@@ -22,9 +22,9 @@ enum EnemyType {
 
 final enemies = {
   EnemyType.panda: EnemyData(
-      size: Vector2(200, 220),
-      speed: 50,
-      sprite: 'panda.png',
+    size: Vector2(200, 220),
+    speed: 50,
+    sprite: 'panda.png',
   ),
 };
 
@@ -64,8 +64,7 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
   void update(double dt) {
     super.update(dt);
 
-    final dir = x < target
-        ? 1 : -1;
+    final dir = x < target ? 1 : -1;
 
     position.x += data.speed * dir * dt;
 

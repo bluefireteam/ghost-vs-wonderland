@@ -5,7 +5,7 @@ import 'package:flame/components.dart';
 class Bubble extends PositionComponent with HasGameRef {
   Vector2 velocity = Vector2.zero();
 
-  Bubble(double radius) {
+  Bubble(double radius) : super(priority: 5) {
     anchor = Anchor.center;
     size = Vector2.all(2 * radius);
   }

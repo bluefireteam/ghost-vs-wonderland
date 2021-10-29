@@ -23,10 +23,12 @@ class GhostGame extends FlameGame with KeyboardEvents {
 
     camera.viewport = FixedResolutionViewport(Vector2(1600, 1690));
 
-    add(SpriteComponent(
-      sprite: await loadSprite(stage.background),
-      priority: 0,
-    ));
+    add(
+      SpriteComponent(
+        sprite: await loadSprite(stage.background),
+        priority: 0,
+      ),
+    );
     for (var type in stage.enemies) {
       add(Enemy(type));
     }
