@@ -28,24 +28,45 @@ class GhostGame extends FlameGame with KeyboardEvents {
     RawKeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
-    if (event is! RawKeyDownEvent) {
-      return KeyEventResult.handled;
-    }
+    final isDown = event is RawKeyDownEvent;
+    final w = LogicalKeyboardKey.keyW;
+    final a = LogicalKeyboardKey.keyA;
+    final s = LogicalKeyboardKey.keyS;
+    final d = LogicalKeyboardKey.keyD;
+    final move = ghost.move;
 
-    if (keysPressed.contains(LogicalKeyboardKey.keyW)) {
-      ghost.move.y = -1;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyS)) {
-      ghost.move.y = 1;
-    } else {
-      ghost.move.y = 0;
-    }
-
-    if (keysPressed.contains(LogicalKeyboardKey.keyA)) {
-      ghost.move.x = -1;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyD)) {
-      ghost.move.x = 1;
-    } else {
-      ghost.move.x = 0;
+    if (event.logicalKey == w) {
+      if (isDown) {
+        move.y = -1;
+      } else if (keysPressed.contains(s)) {
+        move.y = 1;
+      } else {
+        move.y = 0;
+      }
+    } else if (event.logicalKey == s) {
+      if (isDown) {
+        move.y = 1;
+      } else if (keysPressed.contains(w)) {
+        move.y = -1;
+      } else {
+        move.y = 0;
+      }
+    } else if (event.logicalKey == a) {
+      if (isDown) {
+        move.x = -1;
+      } else if (keysPressed.contains(d)) {
+        move.x = 1;
+      } else {
+        move.x = 0;
+      }
+    } else if (event.logicalKey == d) {
+      if (isDown) {
+        move.x = 1;
+      } else if (keysPressed.contains(a)) {
+        move.x = -1;
+      } else {
+        move.x = 0;
+      }
     }
 
     return KeyEventResult.handled;
