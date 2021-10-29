@@ -73,4 +73,3 @@ class GhostGame extends FlameGame with KeyboardEvents {
     return KeyEventResult.handled;
   }
 }
-
