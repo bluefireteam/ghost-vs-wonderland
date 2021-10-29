@@ -9,10 +9,12 @@ import '../game.dart';
 class EnemyData {
   final Vector2 size;
   final double speed;
+  final String sprite;
 
   EnemyData({
     required this.size,
     required this.speed,
+    required this.sprite,
   });
 }
 
@@ -22,14 +24,13 @@ enum EnemyType {
 
 final enemies = {
   EnemyType.panda: EnemyData(
-      size: Vector2.all(100),
+      size: Vector2(200, 220),
       speed: 50,
+      sprite: 'panda.png',
   ),
 };
 
-class Enemy extends PositionComponent with HasGameRef<GhostGame> {
-  static final Paint _paint = Paint()..color = Colors.green;
-
+class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
   Enemy(this.type);
 
   final random = Random();
@@ -47,6 +48,7 @@ class Enemy extends PositionComponent with HasGameRef<GhostGame> {
 
     size = data.size;
 
+    sprite = await gameRef.loadSprite(data.sprite);
 
     final area = gameRef.size.x - size.x;
     position.x = area * random.nextDouble();
@@ -72,11 +74,5 @@ class Enemy extends PositionComponent with HasGameRef<GhostGame> {
     if ((position.x - target).abs() <= 5) {
       _chooseTarget();
     }
-  }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    canvas.drawRect(size.toRect(), _paint);
   }
 }

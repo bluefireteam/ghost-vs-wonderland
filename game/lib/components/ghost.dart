@@ -1,14 +1,11 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:ghost_vs_wonderland/game.dart';
 
-class Ghost extends PositionComponent {
-  static const double _radius = 30.0;
+class Ghost extends SpriteComponent with HasGameRef<GhostGame> {
+  static const double _size = 400.0;
   static const double _maxSpeed = 350.0;
   static const double _acc = 250.0;
-
-  static final Paint _paint = Paint()..color = const Color(0xFFFF0000);
 
   // current direction being pressed by the player
   final Vector2 move = Vector2.zero();
@@ -17,7 +14,14 @@ class Ghost extends PositionComponent {
 
   Ghost() {
     anchor = Anchor.center;
-    size = Vector2.all(_radius);
+    size = Vector2.all(_size);
+  }
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    sprite = await gameRef.loadSprite('hero.png');
   }
 
   @override
@@ -29,11 +33,5 @@ class Ghost extends PositionComponent {
 
     speed += acc * dt;
     position += speed * dt + acc * dt * dt / 2;
-  }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    canvas.drawCircle(Offset.zero, _radius, _paint);
   }
 }

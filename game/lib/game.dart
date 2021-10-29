@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
 import 'package:flame/game.dart';
@@ -17,11 +18,17 @@ class GhostGame extends FlameGame with KeyboardEvents {
   Future<void> onLoad() async {
     await super.onLoad();
 
+    add(SpriteComponent(
+      sprite: await loadSprite(stage.background),
+      priority: 0,
+    ));
     for (var type in stage.enemies) {
       add(Enemy(type));
     }
 
     add(ghost = Ghost()..position = size / 2);
+
+    camera.viewport = FixedResolutionViewport(Vector2(1600, 1690));
   }
 
   @override
@@ -73,4 +80,3 @@ class GhostGame extends FlameGame with KeyboardEvents {
     return KeyEventResult.handled;
   }
 }
-
