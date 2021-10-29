@@ -1,18 +1,14 @@
-<<<<<<< HEAD
-import 'package:flame/components.dart';
-=======
 import 'package:dartlin/dartlin.dart';
->>>>>>> 870c038 (Add bubbles)
+import 'package:flame/components.dart';
+import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
-import 'package:flame/game.dart';
-import 'package:ghost_vs_wonderland/stages.dart';
-
-import 'components/bubble.dart';
-import 'components/ghost.dart';
-import 'components/enemy.dart';
 import 'package:flutter/widgets.dart';
 
+import 'components/bubble.dart';
+import 'components/enemy.dart';
+import 'components/ghost.dart';
+import 'stages.dart';
 import 'utils/util.dart';
 
 class GhostGame extends FlameGame with KeyboardEvents {
