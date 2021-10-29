@@ -1,9 +1,20 @@
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-import 'game.dart';
+import 'widgets/title_page.dart';
+import 'widgets/stage_select_page.dart';
+import 'widgets/game_page.dart';
 
 void main() {
-  runApp(GameWidget(game: GhostGame()));
+  runApp(MaterialApp(
+      routes: {
+        '/title': (_) => const TitlePage(),
+        '/stages': (_) => const StageSelectPage(),
+        '/game': (context) {
+          final stageNumber = ModalRoute.of(context)?.settings.arguments as int;
+          return GamePage(stageNumber: stageNumber);
+        },
+      },
+      initialRoute: '/title',
+  ));
 }
 

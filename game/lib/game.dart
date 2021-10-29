@@ -1,6 +1,7 @@
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
 import 'package:flame/game.dart';
+import 'package:ghost_vs_wonderland/stages.dart';
 
 import 'components/ghost.dart';
 import 'components/enemy.dart';
@@ -8,13 +9,17 @@ import 'package:flutter/widgets.dart';
 
 class GhostGame extends FlameGame with KeyboardEvents {
   late final Ghost ghost;
+  final StageData stage;
+
+  GhostGame(this.stage);
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    add(Enemy(EnemyType.panda));
-    add(Enemy(EnemyType.panda));
+    for (var type in stage.enemies) {
+      add(Enemy(type));
+    }
 
     add(ghost = Ghost()..position = size / 2);
   }
