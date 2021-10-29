@@ -1,0 +1,20 @@
+name: ghost_vs_wonderland
+description: Ghost vs Wonderland
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ">=2.15.0-262.0.dev <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flame: ^1.0.0-releasecandidate.16
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: false
