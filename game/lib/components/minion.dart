@@ -1,25 +1,40 @@
-import 'dart:ui';
+import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 import 'package:ghost_vs_wonderland/game.dart';
 
-class Minion extends PositionComponent with HasGameRef<GhostGame> {
-  static const double _radius = 15.0;
-  static final Paint _paint = Paint()..color = Colors.orange; 
-
+class Minion extends SpriteComponent with HasGameRef<GhostGame> {
   final Vector2 move = Vector2.zero();
 
-  Vector2 speed = Vector2.zero();
+  final speed = 50;
 
   Minion() {
     anchor = Anchor.center;
-    size = Vector2.all(_radius);
+    size = Vector2.all(100);
   }
 
   @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    canvas.drawCircle(Offset.zero, _radius, _paint);
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    sprite = await gameRef.loadSprite('minion.png');
+
+
+    final area = gameRef.size.x - size.x;
+    final random = Random();
+
+    position.x = area * random.nextDouble();
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    y += speed * dt;
+
+    if (y >= gameRef.size.y) {
+      shouldRemove = true;
+      // TODO
+    }
   }
 }
