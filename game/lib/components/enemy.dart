@@ -3,7 +3,8 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:ghost_vs_wonderland/main.dart';
+
+import '../game.dart';
 
 class EnemyData {
   final Vector2 size;
