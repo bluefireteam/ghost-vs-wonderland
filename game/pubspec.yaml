@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flame: ^1.0.0-releasecandidate.16
+  dartlin: ^0.6.1
 
 dev_dependencies:
   flutter_test:
