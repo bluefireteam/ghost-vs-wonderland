@@ -2,17 +2,22 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 
+import 'bubble.dart';
+
 import '../game.dart';
+import '../utils/util.dart';
 
 class EnemyData {
   final Vector2 size;
   final double speed;
   final String sprite;
+  final double fireInterval;
 
   EnemyData({
     required this.size,
     required this.speed,
     required this.sprite,
+    required this.fireInterval,
   });
 }
 
@@ -25,6 +30,7 @@ final enemies = {
     size: Vector2(200, 220),
     speed: 50,
     sprite: 'panda.png',
+    fireInterval: 2,
   ),
 };
 
@@ -34,6 +40,8 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
   final random = Random();
 
   final EnemyType type;
+
+  late Timer bubbleTimer;
 
   late EnemyData data;
   late double target;
@@ -52,7 +60,16 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
     position.x = area * random.nextDouble();
     position.y = gameRef.size.y - size.y;
 
+    bubbleTimer = Timer(data.fireInterval, callback: _fire, repeat: true)
+        ..start();
+
     _chooseTarget();
+  }
+
+  void _fire() {
+    gameRef.add(Bubble(50)
+      ..position = position + size / 2
+      ..velocity = (random.nextAscendingVector2() - Vector2.all(0.5)) * 200);
   }
 
   void _chooseTarget() {
@@ -63,6 +80,7 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
   @override
   void update(double dt) {
     super.update(dt);
+    bubbleTimer.update(dt);
 
     final dir = x < target ? 1 : -1;
 

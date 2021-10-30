@@ -1,15 +1,12 @@
-import 'package:dartlin/dartlin.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import 'components/bubble.dart';
 import 'components/enemy.dart';
 import 'components/ghost.dart';
 import 'stages.dart';
-import 'utils/util.dart';
 
 class GhostGame extends FlameGame with KeyboardEvents {
   late final Ghost ghost;
@@ -34,13 +31,6 @@ class GhostGame extends FlameGame with KeyboardEvents {
     }
 
     add(ghost = Ghost()..position = size / 2);
-    repeat(5, (_) => add(_randomBubble()));
-  }
-
-  Bubble _randomBubble() {
-    return Bubble(50)
-      ..position = (size.clone()..multiply(r.nextVector2()))
-      ..velocity = (r.nextVector2() - Vector2.all(0.5)) * 200;
   }
 
   @override
