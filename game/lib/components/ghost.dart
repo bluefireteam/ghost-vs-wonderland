@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 
@@ -7,14 +5,9 @@ import '../game.dart';
 import 'minion.dart';
 
 class Ghost extends SpriteComponent with HasGameRef<GhostGame> {
-  static final Paint _auraPaint = Paint()
-    ..color = const Color(0x88FFFFFF)
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 2.0;
-
   static const double _size = 400.0;
-  static const double _maxSpeed = 550.0;
-  static const double _acc = 450.0;
+  static const double _maxSpeed = 650.0;
+  static const double _acc = 750.0;
   static const double _auraStrength = 450.0;
   static const double _auraRadius = 120.0;
 
