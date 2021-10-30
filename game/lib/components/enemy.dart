@@ -30,7 +30,7 @@ final enemies = {
     size: Vector2(200, 220),
     speed: 50,
     sprite: 'panda.png',
-    fireInterval: 2,
+    fireInterval: 4,
   ),
 };
 
