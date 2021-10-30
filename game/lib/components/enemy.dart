@@ -61,13 +61,14 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
     position.y = gameRef.size.y - size.y;
 
     bubbleTimer = Timer(data.fireInterval, callback: _fire, repeat: true)
-        ..start();
+      ..start();
 
     _chooseTarget();
   }
 
   void _fire() {
-    gameRef.add(Bubble(50)
+    final color = Bubble.randomColor();
+    gameRef.add(Bubble(color, 50)
       ..position = position + size / 2
       ..velocity = (random.nextAscendingVector2() - Vector2.all(0.5)) * 200);
   }
