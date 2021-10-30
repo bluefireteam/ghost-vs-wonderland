@@ -13,8 +13,8 @@ class Ghost extends SpriteComponent with HasGameRef<GhostGame> {
     ..strokeWidth = 2.0;
 
   static const double _size = 400.0;
-  static const double _maxSpeed = 450.0;
-  static const double _acc = 350.0;
+  static const double _maxSpeed = 550.0;
+  static const double _acc = 450.0;
   static const double _auraStrength = 450.0;
   static const double _auraRadius = 120.0;
 
@@ -63,11 +63,5 @@ class Ghost extends SpriteComponent with HasGameRef<GhostGame> {
 
     speed += acc * dt;
     position += speed * dt + acc * dt * dt / 2;
-  }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    canvas.drawCircle((size / 2).toOffset(), _auraRadius, _auraPaint);
   }
 }
