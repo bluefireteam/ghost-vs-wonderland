@@ -1,16 +1,19 @@
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/geometry.dart';
 
 import '../game.dart';
 
-class Bubble extends PositionComponent with HasGameRef<GhostGame> {
+class Bubble extends PositionComponent with HasGameRef<GhostGame>, Hitbox, Collidable {
   Vector2 velocity = Vector2.zero();
   static final _paint = Paint()..color = const Color(0x88FF00FF);
 
   Bubble(double radius) : super(priority: 5) {
     anchor = Anchor.center;
     size = Vector2.all(2 * radius);
+
+    addHitbox(HitboxCircle());
   }
 
   late Vector2 acc;

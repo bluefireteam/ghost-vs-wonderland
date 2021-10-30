@@ -9,7 +9,7 @@ import 'components/enemy.dart';
 import 'components/ghost.dart';
 import 'stages.dart';
 
-class GhostGame extends FlameGame with KeyboardEvents {
+class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
   late final Ghost ghost;
   late final Darkness darkness;
   final StageData stage;
