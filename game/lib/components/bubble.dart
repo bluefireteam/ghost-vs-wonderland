@@ -4,14 +4,31 @@ import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 
 import '../game.dart';
+import '../utils/util.dart';
 
-class Bubble extends PositionComponent with HasGameRef<GhostGame>, Hitbox, Collidable {
+class Bubble extends PositionComponent
+    with HasGameRef<GhostGame>, Hitbox, Collidable {
   Vector2 velocity = Vector2.zero();
-  static final _paint = Paint()..color = const Color(0x88FF00FF);
+  late Paint innerPaint;
+  late Paint outerPaint;
 
-  Bubble(double radius) : super(priority: 2) {
+  Bubble(Color color, double radius) : super(priority: 5) {
     anchor = Anchor.center;
     size = Vector2.all(2 * radius);
+
+    innerPaint = Paint()
+      ..shader = Gradient.radial(
+        Vector2.all(radius).toOffset(),
+        radius,
+        [
+          color.withAlpha(50),
+          color.withAlpha(150),
+        ],
+      );
+
+    outerPaint = Paint()
+      ..color = color.withAlpha(200)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.outer, 20);
 
     addHitbox(HitboxCircle());
   }
@@ -36,6 +53,17 @@ class Bubble extends PositionComponent with HasGameRef<GhostGame>, Hitbox, Colli
     super.render(canvas);
 
     final p = (size / 2).toOffset();
-    canvas.drawCircle(p, width / 2, _paint);
+    final radius = width / 2;
+
+    canvas.drawCircle(p, radius, innerPaint);
+    canvas.drawCircle(p, radius, outerPaint);
+  }
+
+  static Color randomColor() {
+    return [
+      const Color(0xFFFF0000),
+      const Color(0xFF00FF00),
+      const Color(0xFF0000FF),
+    ].sample();
   }
 }
