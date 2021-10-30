@@ -17,7 +17,42 @@ class GamePage extends StatelessWidget {
     final stage = stages[stageNumber];
 
     return GameWidget(
-        game: GhostGame(stage),
+      game: GhostGame(stage),
+      overlayBuilderMap: {
+        'stageClear': (context, game) {
+          return Center(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              color: const Color(0xFFFFFFFF),
+              width: 400,
+              height: 250,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Stage clear!',
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'You brought darkness into the world!',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO save proggress
+                      Navigator.of(context).pushReplacementNamed('/stages');
+                    },
+                    child: const Text('Awesome!'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      },
     );
   }
 }

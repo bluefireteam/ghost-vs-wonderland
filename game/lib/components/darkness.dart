@@ -36,6 +36,10 @@ class Darkness extends PositionComponent with HasGameRef<GhostGame> {
               Color(0x00000000),
             ],
         );
+
+    if (_progress >= 1) {
+      gameRef.stageClear();
+    }
   }
 
 

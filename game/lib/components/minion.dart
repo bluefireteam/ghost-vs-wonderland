@@ -6,7 +6,7 @@ import 'package:ghost_vs_wonderland/game.dart';
 class Minion extends SpriteComponent with HasGameRef<GhostGame> {
   final Vector2 move = Vector2.zero();
 
-  final speed = 50;
+  final speed = 250;
 
   Minion() : super(priority: 7) {
     anchor = Anchor.center;

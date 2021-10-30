@@ -27,7 +27,7 @@ class StageSelectPage extends StatelessWidget {
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(20),
-                        child: Text(i.toString()),
+                        child: Text((i + 1).toString()),
                       ),
                     ),
                   ),

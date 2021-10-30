@@ -38,6 +38,11 @@ class GhostGame extends FlameGame with KeyboardEvents {
     add(ghost = Ghost()..position = size / 2);
   }
 
+  void stageClear() {
+    pauseEngine();
+    overlays.add('stageClear');
+  }
+
   @override
   KeyEventResult onKeyEvent(
     RawKeyEvent event,

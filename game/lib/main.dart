@@ -5,7 +5,8 @@ import 'widgets/stage_select_page.dart';
 import 'widgets/game_page.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(
+    MaterialApp(
       routes: {
         '/title': (_) => const TitlePage(),
         '/stages': (_) => const StageSelectPage(),
@@ -15,6 +16,6 @@ void main() {
         },
       },
       initialRoute: '/title',
-  ));
+    ),
+  );
 }
-
