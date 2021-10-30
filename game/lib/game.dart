@@ -35,7 +35,7 @@ class GhostGame extends FlameGame with KeyboardEvents {
       add(Enemy(type));
     }
 
-    add(ghost = Ghost()..position = Vector2.zero()); // * size / 2);
+    add(ghost = Ghost()..position = size / 2);
   }
 
   @override
