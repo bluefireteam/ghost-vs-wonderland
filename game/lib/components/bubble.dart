@@ -9,7 +9,7 @@ class Bubble extends PositionComponent with HasGameRef<GhostGame>, Hitbox, Colli
   Vector2 velocity = Vector2.zero();
   static final _paint = Paint()..color = const Color(0x88FF00FF);
 
-  Bubble(double radius) : super(priority: 5) {
+  Bubble(double radius) : super(priority: 2) {
     anchor = Anchor.center;
     size = Vector2.all(2 * radius);
 

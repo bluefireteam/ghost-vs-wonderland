@@ -35,7 +35,7 @@ final enemies = {
 };
 
 class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
-  Enemy(this.type);
+  Enemy(this.type) : super(priority: 2);
 
   final random = Random();
 

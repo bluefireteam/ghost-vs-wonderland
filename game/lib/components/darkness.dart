@@ -9,7 +9,7 @@ class Darkness extends PositionComponent with HasGameRef<GhostGame> {
   late Paint paint;
   double _progress = 0;
 
-  Darkness(): super(priority: 6);
+  Darkness(): super(priority: 2);
 
   @override
   Future<void> onLoad() async {

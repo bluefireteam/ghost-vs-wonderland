@@ -24,7 +24,7 @@ class Ghost extends SpriteComponent with HasGameRef<GhostGame> {
   Vector2 speed = Vector2.zero();
   late Timer minionSpawn;
 
-  Ghost() : super(priority: 7) {
+  Ghost() : super(priority: 2) {
     anchor = Anchor.center;
     size = Vector2.all(_size);
   }
