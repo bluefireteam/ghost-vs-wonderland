@@ -13,7 +13,9 @@ class Clock extends PositionComponent with HasGameRef<GhostGame> {
 
   late Timer _ticker;
 
-  Clock(int seconds) : _seconds = seconds, super(priority: 4);
+  Clock(int seconds)
+      : _seconds = seconds,
+        super(priority: 4);
 
   @override
   Future<void> onLoad() async {
@@ -30,8 +32,7 @@ class Clock extends PositionComponent with HasGameRef<GhostGame> {
 
     position = Vector2(20, 20);
 
-    _ticker = Timer(1, callback: _tick, repeat: true)
-        ..start();
+    _ticker = Timer(1, callback: _tick, repeat: true)..start();
   }
 
   void _tick() {

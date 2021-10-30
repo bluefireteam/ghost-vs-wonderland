@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 
-import 'bubble.dart';
-
 import '../game.dart';
 import '../utils/util.dart';
+import 'bubble.dart';
 
 class EnemyData {
   final Vector2 size;

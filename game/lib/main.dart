@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'data/data_loader.dart';
 import 'widgets/title_page.dart';
 import 'widgets/stage_select_page.dart';
 import 'widgets/game_page.dart';
 
-void main() {
+void main() async {
+  await DataLoader.init();
+
   runApp(
     MaterialApp(
       routes: {

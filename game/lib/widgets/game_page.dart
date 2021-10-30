@@ -1,6 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:ghost_vs_wonderland/stages.dart';
+import 'package:ghost_vs_wonderland/data/stages.dart';
 
 import '../game.dart';
 
@@ -42,7 +42,6 @@ class GamePage extends StatelessWidget {
                   const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: () {
-                      // TODO save proggress
                       Navigator.of(context).pushReplacementNamed('/stages');
                     },
                     child: const Text('Awesome!'),

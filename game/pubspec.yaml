@@ -11,14 +11,18 @@ dependencies:
     sdk: flutter
   flame: ^1.0.0-releasecandidate.16
   dartlin: ^0.6.1
+  shared_preferences: ^2.0.8
+  json_annotation: ^4.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
   flame_lint: ^0.0.1
+  build_runner: ^2.1.4
+  json_serializable: ^6.0.1
 
 flutter:
-  uses-material-design: false
+  uses-material-design: true
   assets:
     - assets/images/

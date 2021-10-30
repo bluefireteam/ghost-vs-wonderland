@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
-import 'package:ghost_vs_wonderland/components/bubble.dart';
-import 'package:ghost_vs_wonderland/game.dart';
 
-class Minion extends SpriteComponent with HasGameRef<GhostGame>, Hitbox, Collidable {
+import '../game.dart';
+import 'bubble.dart';
+
+class Minion extends SpriteComponent
+    with HasGameRef<GhostGame>, Hitbox, Collidable {
   final Vector2 move = Vector2.zero();
 
   final speed = 250;
@@ -21,7 +23,6 @@ class Minion extends SpriteComponent with HasGameRef<GhostGame>, Hitbox, Collida
     await super.onLoad();
 
     sprite = await gameRef.loadSprite('minion.png');
-
 
     final area = gameRef.size.x - size.x;
     final random = Random();

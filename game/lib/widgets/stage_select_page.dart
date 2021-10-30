@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../stages.dart';
+import '../data/data_loader.dart';
+import '../data/stages.dart';
 
 class StageSelectPage extends StatelessWidget {
   const StageSelectPage({Key? key}) : super(key: key);
@@ -18,24 +19,70 @@ class StageSelectPage extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (var i = 0; i < stages.length; i++)
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/game', arguments: i);
-                    },
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text((i + 1).toString()),
-                      ),
-                    ),
-                  ),
-              ],
+              children: stages.map((stage) {
+                return LevelCard(
+                  stage: stage,
+                  locked: DataLoader.data.isStageLocked(stage.id),
+                  cleared: DataLoader.data.isStageCleared(stage.id),
+                );
+              }).toList(),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class LevelCard extends StatelessWidget {
+  final StageData stage;
+  final bool locked;
+  final bool cleared;
+
+  const LevelCard({
+    Key? key,
+    required this.stage,
+    required this.locked,
+    required this.cleared,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final card = Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text(stage.name),
+      ),
+    );
+    final wrappedCard = locked
+        ? card
+        : InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed('/game', arguments: stage.id);
+            },
+            child: card,
+          );
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        wrappedCard,
+        if (locked)
+          const Icon(
+            Icons.lock,
+            color: Colors.black,
+            size: 32.0,
+          ),
+        if (cleared)
+          const Positioned(
+            top: 8,
+            right: 8,
+            child: Icon(
+              Icons.check,
+              color: Colors.green,
+              size: 16.0,
+            ),
+          ),
+      ],
     );
   }
 }

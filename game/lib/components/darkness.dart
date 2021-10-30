@@ -1,8 +1,9 @@
-import 'package:flame/components.dart';
-import 'package:ghost_vs_wonderland/game.dart';
-
 import 'dart:math';
 import 'dart:ui';
+
+import 'package:flame/components.dart';
+
+import '../game.dart';
 
 class Darkness extends PositionComponent with HasGameRef<GhostGame> {
   late Paint paint;

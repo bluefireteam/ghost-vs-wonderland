@@ -8,7 +8,8 @@ import 'components/clock.dart';
 import 'components/darkness.dart';
 import 'components/enemy.dart';
 import 'components/ghost.dart';
-import 'stages.dart';
+import 'data/data_loader.dart';
+import 'data/stages.dart';
 
 class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
   late final Ghost ghost;
@@ -43,6 +44,7 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
   void stageClear() {
     pauseEngine();
     overlays.add('stageClear');
+    DataLoader.data.clearLevel(stage.id);
   }
 
   void gameOver() {
