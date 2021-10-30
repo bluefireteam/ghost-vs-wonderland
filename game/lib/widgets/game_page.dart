@@ -52,6 +52,38 @@ class GamePage extends StatelessWidget {
             ),
           );
         },
+        'gameOver': (context, game) {
+          return Center(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              color: const Color(0xFFFFFFFF),
+              width: 400,
+              height: 250,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Game Over!',
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'You failed in the face of good!',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed('/stages');
+                    },
+                    child: const Text('Okay :('),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       },
     );
   }

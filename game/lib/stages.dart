@@ -4,15 +4,18 @@ class StageData {
   const StageData({
     required this.enemies,
     required this.background,
+    required this.seconds,
   });
 
   final List<EnemyType> enemies;
   final String background;
+  final int seconds;
 }
 
 const stages = [
   StageData(
     background: 'woods.png',
+    seconds: 60,
     enemies: [
       EnemyType.panda,
       EnemyType.panda,
@@ -20,6 +23,7 @@ const stages = [
   ),
   StageData(
     background: 'woods.png',
+    seconds: 60,
     enemies: [
       EnemyType.panda,
       EnemyType.panda,
@@ -29,6 +33,7 @@ const stages = [
   ),
   StageData(
     background: 'woods.png',
+    seconds: 120,
     enemies: [
       EnemyType.panda,
       EnemyType.panda,

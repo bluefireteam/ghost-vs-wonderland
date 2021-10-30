@@ -4,6 +4,7 @@ import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+import 'components/clock.dart';
 import 'components/darkness.dart';
 import 'components/enemy.dart';
 import 'components/ghost.dart';
@@ -36,11 +37,17 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
     }
 
     add(ghost = Ghost()..position = size / 2);
+    add(Clock(stage.seconds));
   }
 
   void stageClear() {
     pauseEngine();
     overlays.add('stageClear');
+  }
+
+  void gameOver() {
+    pauseEngine();
+    overlays.add('gameOver');
   }
 
   @override
