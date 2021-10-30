@@ -4,12 +4,14 @@ import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+import 'components/darkness.dart';
 import 'components/enemy.dart';
 import 'components/ghost.dart';
 import 'stages.dart';
 
 class GhostGame extends FlameGame with KeyboardEvents {
   late final Ghost ghost;
+  late final Darkness darkness;
   final StageData stage;
 
   GhostGame(this.stage);
@@ -26,6 +28,9 @@ class GhostGame extends FlameGame with KeyboardEvents {
         priority: 0,
       ),
     );
+
+    add(darkness = Darkness());
+
     for (var type in stage.enemies) {
       add(Enemy(type));
     }

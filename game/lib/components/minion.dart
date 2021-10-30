@@ -8,7 +8,7 @@ class Minion extends SpriteComponent with HasGameRef<GhostGame> {
 
   final speed = 50;
 
-  Minion() {
+  Minion() : super(priority: 7) {
     anchor = Anchor.center;
     size = Vector2.all(100);
   }
@@ -34,7 +34,7 @@ class Minion extends SpriteComponent with HasGameRef<GhostGame> {
 
     if (y >= gameRef.size.y) {
       shouldRemove = true;
-      // TODO
+      gameRef.darkness.increase(0.1);
     }
   }
 }
