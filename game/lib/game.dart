@@ -41,10 +41,13 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
     add(Clock(stage.seconds));
   }
 
-  void stageClear() {
+  void stageClear() async {
     pauseEngine();
-    overlays.add('stageClear');
+
     DataLoader.data.clearLevel(stage.id);
+    await DataLoader.update();
+
+    overlays.add('stageClear');
   }
 
   void gameOver() {
