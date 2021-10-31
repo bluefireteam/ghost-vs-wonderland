@@ -36,5 +36,5 @@ flutter:
         - asset: assets/fonts/SPOOKYHOUSE_.ttf
 
     - family: felipa
-        fonts:
-            - asset: assets/fonts/FELIPA_.otf
+      fonts:
+        - asset: assets/fonts/FELIPA_.otf
