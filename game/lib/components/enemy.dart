@@ -12,18 +12,21 @@ class EnemyData {
   final Vector2 size;
   final double speed;
   final double fireInterval;
+  final double rateOfFire;
   final Artboard Function(GhostGame) loadArtboard;
 
   EnemyData({
     required this.size,
     required this.speed,
     required this.fireInterval,
+    required this.rateOfFire,
     required this.loadArtboard,
   });
 }
 
 enum EnemyType {
   panda,
+  coala,
 }
 
 final enemies = {
@@ -31,7 +34,15 @@ final enemies = {
     size: Vector2(200, 220),
     speed: 50,
     fireInterval: 4,
+    rateOfFire: 1,
     loadArtboard: (game) => game.pandaArtBoard,
+  ),
+  EnemyType.coala: EnemyData(
+    size: Vector2(200, 220),
+    speed: 50,
+    fireInterval: 4,
+    rateOfFire: 2,
+    loadArtboard: (game) => game.coalaArtBoard,
   ),
 };
 
@@ -77,9 +88,11 @@ class RiveEnemy extends RiveComponent with HasGameRef<GhostGame> {
 
   void _fire() {
     final color = Bubble.randomColor();
-    gameRef.add(Bubble(color, 50)
-      ..position = position + size / 2
-      ..velocity = (random.nextAscendingVector2() - Vector2.all(0.5)) * 200);
+    for (var i = 0; i < data.rateOfFire; i++) {
+      gameRef.add(Bubble(color, 50)
+          ..position = position + size / 2
+          ..velocity = (random.nextAscendingVector2() - Vector2.all(0.5)) * 200);
+    }
   }
 
   void _chooseTarget() {

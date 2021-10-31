@@ -40,13 +40,22 @@ const stages = [
   StageData(
     id: 2,
     background: 'woods.png',
-    seconds: 120,
+    seconds: 220,
+    enemies: [
+      EnemyType.coala,
+      EnemyType.coala,
+      EnemyType.coala,
+    ],
+  ),
+  StageData(
+    id: 3,
+    background: 'woods.png',
+    seconds: 220,
     enemies: [
       EnemyType.panda,
-      EnemyType.panda,
-      EnemyType.panda,
-      EnemyType.panda,
-      EnemyType.panda,
+      EnemyType.coala,
+      EnemyType.coala,
+      EnemyType.coala,
       EnemyType.panda,
     ],
   ),
