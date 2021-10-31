@@ -1,4 +1,4 @@
-import 'package:ghost_vs_wonderland/components/enemy.dart';
+import '../components/enemy.dart';
 
 class StageData {
   const StageData({
