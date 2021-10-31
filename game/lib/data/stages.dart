@@ -42,9 +42,9 @@ const stages = [
     background: 'woods.png',
     seconds: 220,
     enemies: [
-      EnemyType.coala,
-      EnemyType.coala,
-      EnemyType.coala,
+      EnemyType.koala,
+      EnemyType.koala,
+      EnemyType.koala,
     ],
   ),
   StageData(
@@ -53,9 +53,9 @@ const stages = [
     seconds: 220,
     enemies: [
       EnemyType.panda,
-      EnemyType.coala,
-      EnemyType.coala,
-      EnemyType.coala,
+      EnemyType.koala,
+      EnemyType.koala,
+      EnemyType.koala,
       EnemyType.panda,
     ],
   ),
