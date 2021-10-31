@@ -19,7 +19,7 @@ class StageData {
 const stages = [
   StageData(
     id: 0,
-    background: 'woods.png',
+    background: 'bgground.png',
     seconds: 120,
     enemies: [
       EnemyType.panda,
@@ -28,7 +28,7 @@ const stages = [
   ),
   StageData(
     id: 1,
-    background: 'woods.png',
+    background: 'bgground.png',
     seconds: 120,
     enemies: [
       EnemyType.panda,
@@ -39,7 +39,7 @@ const stages = [
   ),
   StageData(
     id: 2,
-    background: 'woods.png',
+    background: 'bgground.png',
     seconds: 220,
     enemies: [
       EnemyType.koala,
@@ -49,7 +49,7 @@ const stages = [
   ),
   StageData(
     id: 3,
-    background: 'woods.png',
+    background: 'bgground.png',
     seconds: 220,
     enemies: [
       EnemyType.panda,

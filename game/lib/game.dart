@@ -33,12 +33,7 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
 
     camera.viewport = FixedResolutionViewport(Vector2(1600, 1690));
 
-    add(
-      SpriteComponent(
-        sprite: await loadSprite(stage.background),
-        priority: 0,
-      ),
-    );
+    add(Background(stage));
 
     add(darkness = Darkness());
 
@@ -111,5 +106,71 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
     }
 
     return KeyEventResult.handled;
+  }
+}
+
+class Background extends PositionComponent with HasGameRef<GhostGame> {
+  final StageData stage;
+
+  Background(this.stage)
+      : super(
+          size: Vector2(1600, 1690),
+        ) {
+    size = Vector2(1600, 1690);
+    position = Vector2.all(0);
+  }
+
+  @override
+  Future<void>? onLoad() async {
+    size = Vector2(1600, 1690);
+    position = Vector2.all(0);
+
+    final bgskyArtBoard =
+        await loadArtboard(RiveFile.asset('assets/bgsky.riv'));
+
+    add(BackgroundSky(bgskyArtBoard));
+
+    add(SpriteComponent(
+      sprite: await gameRef.loadSprite(stage.background),
+      priority: 0,
+    ));
+    return super.onLoad();
+  }
+}
+
+class BackgroundSky extends RiveComponent with HasGameRef<GhostGame> {
+  BackgroundSky(Artboard artboard)
+      : super(
+          artboard: artboard,
+          priority: 0,
+        );
+
+  SMIInput<double>? _darknessProgress;
+
+  @override
+  Future<void>? onLoad() {
+    size = Vector2(1600, 1690);
+    position = Vector2.all(0);
+
+    final controller = StateMachineController.fromArtboard(
+      artboard,
+      "progress",
+    );
+
+    print(controller);
+
+    if (controller != null) {
+      artboard.addController(controller);
+      _darknessProgress = controller.findInput<double>('progress');
+      _darknessProgress?.value = 0;
+    }
+
+    return super.onLoad();
+  }
+
+  @override
+  void update(double dt) {
+    _darknessProgress?.value = gameRef.darkness.progress * 50;
+    super.update(dt);
   }
 }
