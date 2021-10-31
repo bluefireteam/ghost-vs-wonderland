@@ -30,6 +30,10 @@ class Bubble extends PositionComponent
   }
 
   void recomputePaints() {
+    if (radius <= 0) {
+      return;
+    }
+
     innerPaint = Paint()
       ..shader = Gradient.radial(
         Vector2.all(radius).toOffset(),
