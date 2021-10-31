@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../data/stages.dart';
 import '../game.dart';
+import '../theme.dart';
 
 class GamePage extends StatelessWidget {
   const GamePage({
@@ -44,7 +45,7 @@ class GamePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushReplacementNamed('/stages');
                     },
-                    child: const Text('Awesome!'),
+                    child: const Text('Awesome!', style: TextStyle(color: fontColor)),
                   ),
                 ],
               ),
@@ -76,7 +77,7 @@ class GamePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushReplacementNamed('/stages');
                     },
-                    child: const Text('Okay :('),
+                    child: const Text('Okay :(', style: TextStyle(color: fontColor)),
                   ),
                 ],
               ),

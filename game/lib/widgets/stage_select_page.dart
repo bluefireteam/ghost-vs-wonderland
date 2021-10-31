@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/data_loader.dart';
 import '../data/stages.dart';
+import 'background_container.dart';
 
 class StageSelectPage extends StatelessWidget {
   const StageSelectPage({Key? key}) : super(key: key);
@@ -9,25 +10,27 @@ class StageSelectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Select Stage',
-              style: Theme.of(context).textTheme.headline2,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: stages.map((stage) {
-                return LevelCard(
-                  stage: stage,
-                  locked: DataLoader.data.isStageLocked(stage.id),
-                  cleared: DataLoader.data.isStageCleared(stage.id),
-                );
-              }).toList(),
-            ),
-          ],
+      body: BackgroundContainer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Select Stage',
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: stages.map((stage) {
+                  return LevelCard(
+                    stage: stage,
+                    locked: DataLoader.data.isStageLocked(stage.id),
+                    cleared: DataLoader.data.isStageCleared(stage.id),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
