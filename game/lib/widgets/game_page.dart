@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:ghost_vs_wonderland/data/stages.dart';
 
+import '../data/stages.dart';
 import '../game.dart';
 
 class GamePage extends StatelessWidget {
