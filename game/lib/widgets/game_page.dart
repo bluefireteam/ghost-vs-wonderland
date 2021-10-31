@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../data/stages.dart';
 import '../game.dart';
 import '../theme.dart';
+import 'modal_container.dart';
 
 class GamePage extends StatelessWidget {
   const GamePage({
@@ -22,9 +23,7 @@ class GamePage extends StatelessWidget {
       overlayBuilderMap: {
         'stageClear': (context, game) {
           return Center(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              color: const Color(0xFFFFFFFF),
+            child: ModalContainer(
               width: 400,
               height: 250,
               child: Column(
@@ -54,9 +53,7 @@ class GamePage extends StatelessWidget {
         },
         'gameOver': (context, game) {
           return Center(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              color: const Color(0xFFFFFFFF),
+            child: ModalContainer(
               width: 400,
               height: 250,
               child: Column(

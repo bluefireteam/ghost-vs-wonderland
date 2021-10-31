@@ -1,12 +1,13 @@
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:ghost_vs_wonderland/theme.dart';
 
 import '../game.dart';
 
 class Clock extends PositionComponent with HasGameRef<GhostGame> {
-  static final _paint = Paint()..color = const Color(0xFF000000);
-  static final _padding = Vector2(5, 5);
+  static final _paint = Paint()..color = backgroundColor;
+  static final _padding = Vector2(30, 5);
 
   late int _seconds;
   late TextPaint _textPaint;
@@ -23,12 +24,13 @@ class Clock extends PositionComponent with HasGameRef<GhostGame> {
 
     _textPaint = TextPaint(
       config: const TextPaintConfig(
-        color: Color(0xFFFFFFFF),
+        color: fontColor,
+        fontFamily: fontFamily,
         fontSize: 48,
       ),
     );
 
-    size = Vector2(200, 75);
+    size = Vector2(130, 60);
 
     position = Vector2(20, 20);
 
