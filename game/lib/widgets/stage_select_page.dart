@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghost_vs_wonderland/theme.dart';
 
 import '../data/data_loader.dart';
 import '../data/stages.dart';
@@ -18,6 +19,9 @@ class StageSelectPage extends StatelessWidget {
               Text(
                 'Select Stage',
                 style: Theme.of(context).textTheme.headline2,
+              ),
+              const SizedBox(
+                height: 32,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -51,10 +55,28 @@ class LevelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final card = Card(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Text(stage.name),
+    final card = Opacity(
+      opacity: locked ? 0.6 : 1,
+      child: Card(
+        color: Theme.of(context).backgroundColor,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: SizedBox(
+            height: 30,
+            width: 30,
+            child: locked
+                ? const Icon(
+                    Icons.lock,
+                    color: fontColor,
+                    size: 32.0,
+                  )
+                : Text(
+                    stage.name,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+          ),
+        ),
       ),
     );
     final wrappedCard = locked
@@ -69,19 +91,13 @@ class LevelCard extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         wrappedCard,
-        if (locked)
-          const Icon(
-            Icons.lock,
-            color: Colors.black,
-            size: 32.0,
-          ),
         if (cleared)
           const Positioned(
             top: 8,
             right: 8,
             child: Icon(
               Icons.check,
-              color: Colors.green,
+              color: fontColor,
               size: 16.0,
             ),
           ),
