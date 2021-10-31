@@ -6,6 +6,7 @@ import 'widgets/stage_select_page.dart';
 import 'widgets/game_page.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await DataLoader.init();
 
   runApp(
