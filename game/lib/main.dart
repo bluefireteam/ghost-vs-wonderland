@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'data/data_loader.dart';
+import 'theme.dart';
 import 'widgets/title_page.dart';
 import 'widgets/stage_select_page.dart';
 import 'widgets/game_page.dart';
@@ -11,6 +12,7 @@ void main() async {
 
   runApp(
     MaterialApp(
+      theme: gameTheme,
       routes: {
         '/title': (_) => const TitlePage(),
         '/stages': (_) => const StageSelectPage(),
