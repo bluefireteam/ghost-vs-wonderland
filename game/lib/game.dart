@@ -1,8 +1,10 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flame_rive/flame_rive.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rive/rive.dart';
 
 import 'components/clock.dart';
 import 'components/darkness.dart';
@@ -15,6 +17,7 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
   late final Ghost ghost;
   late final Darkness darkness;
   final StageData stage;
+  late final Artboard minionArtBoard;
 
   GhostGame(this.stage);
 
@@ -22,6 +25,7 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
   Future<void> onLoad() async {
     await super.onLoad();
 
+    minionArtBoard = await loadArtboard(RiveFile.asset('assets/minion.riv'));
     camera.viewport = FixedResolutionViewport(Vector2(1600, 1690));
 
     add(

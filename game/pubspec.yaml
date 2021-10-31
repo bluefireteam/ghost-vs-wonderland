@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   flame: ^1.0.0-releasecandidate.16
+  flame_rive: 1.0.0-releasecandidate.1
+  rive: 0.7.30
   dartlin: ^0.6.1
   shared_preferences: ^2.0.8
   json_annotation: ^4.3.0
@@ -25,6 +27,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/
     - assets/images/
 
   fonts:

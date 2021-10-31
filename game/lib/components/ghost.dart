@@ -32,7 +32,7 @@ class Ghost extends SpriteComponent with HasGameRef<GhostGame> {
   }
 
   void _addMinion() {
-    gameRef.add(Minion());
+    gameRef.add(Minion(gameRef.minionArtBoard));
   }
 
   Vector2 computeEffect(Vector2 element) {
