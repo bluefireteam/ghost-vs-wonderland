@@ -11,31 +11,49 @@ class StageSelectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackgroundContainer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Select Stage',
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              Row(
+      body: Stack(
+        children: [
+          BackgroundContainer(
+            child: Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: stages.map((stage) {
-                  return LevelCard(
-                    stage: stage,
-                    locked: DataLoader.data.isStageLocked(stage.id),
-                    cleared: DataLoader.data.isStageCleared(stage.id),
-                  );
-                }).toList(),
+                children: [
+                  Text(
+                    'Select Stage',
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: stages.map((stage) {
+                      return LevelCard(
+                        stage: stage,
+                        locked: DataLoader.data.isStageLocked(stage.id),
+                        cleared: DataLoader.data.isStageCleared(stage.id),
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          Positioned(
+            top: 10,
+            left: 10,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/title');
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                size: 32,
+                color: fontColor,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -18,70 +18,94 @@ class GamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final stage = stages[stageNumber];
 
-    return GameWidget(
-      game: GhostGame(stage),
-      overlayBuilderMap: {
-        'stageClear': (context, game) {
-          return Center(
-            child: ModalContainer(
-              width: 400,
-              height: 250,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Stage clear!',
-                    style: Theme.of(context).textTheme.headline3,
+    return Scaffold(
+      body: Stack(
+        children: [
+          GameWidget(
+            game: GhostGame(stage),
+            overlayBuilderMap: {
+              'stageClear': (context, game) {
+                return Center(
+                  child: ModalContainer(
+                    width: 400,
+                    height: 250,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Stage clear!',
+                          style: Theme.of(context).textTheme.headline3,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'You brought darkness into the world!',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        const SizedBox(height: 32),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/stages');
+                          },
+                          child: const Text('Awesome!',
+                              style: TextStyle(color: fontColor)),
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'You brought darkness into the world!',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline5,
+                );
+              },
+              'gameOver': (context, game) {
+                return Center(
+                  child: ModalContainer(
+                    width: 400,
+                    height: 250,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Game Over!',
+                          style: Theme.of(context).textTheme.headline3,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'You failed in the face of good!',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        const SizedBox(height: 32),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/stages');
+                          },
+                          child: const Text('Okay :(',
+                              style: TextStyle(color: fontColor)),
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/stages');
-                    },
-                    child: const Text('Awesome!', style: TextStyle(color: fontColor)),
-                  ),
-                ],
+                );
+              },
+            },
+          ),
+          Positioned(
+            top: 10,
+            right: 10,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/title');
+              },
+              icon: const Icon(
+                Icons.close,
+                size: 32,
+                color: backgroundColor,
               ),
             ),
-          );
-        },
-        'gameOver': (context, game) {
-          return Center(
-            child: ModalContainer(
-              width: 400,
-              height: 250,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Game Over!',
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'You failed in the face of good!',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                  const SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/stages');
-                    },
-                    child: const Text('Okay :(', style: TextStyle(color: fontColor)),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      },
+          ),
+        ],
+      ),
     );
   }
 }
