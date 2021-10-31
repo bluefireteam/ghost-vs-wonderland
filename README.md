@@ -8,6 +8,9 @@ flutter pub run build_runner build
 flutter run -d linux
 ```
 
+Play online at: https://bluefireteam.github.io/ghost-vs-wonderland/
+
 ## Credits
 
 Font Spooky House by Ren Runneboom: https://www.dafont.com/pt/spookyhouse.font
+
