@@ -26,7 +26,7 @@ class EnemyData {
 
 enum EnemyType {
   panda,
-  coala,
+  koala,
 }
 
 final enemies = {
@@ -37,12 +37,12 @@ final enemies = {
     rateOfFire: 1,
     loadArtboard: (game) => game.pandaArtBoard,
   ),
-  EnemyType.coala: EnemyData(
+  EnemyType.koala: EnemyData(
     size: Vector2(200, 220),
     speed: 50,
     fireInterval: 4,
     rateOfFire: 2,
-    loadArtboard: (game) => game.coalaArtBoard,
+    loadArtboard: (game) => game.koalaArtBoard,
   ),
 };
 
