@@ -14,3 +14,4 @@ Play online at: https://bluefireteam.github.io/ghost-vs-wonderland/
 
 Font Spooky House by Ren Runneboom: https://www.dafont.com/pt/spookyhouse.font
 
+Font Felipa By Fontstage: https://www.fontsquirrel.com/license/felipa

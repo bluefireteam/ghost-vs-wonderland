@@ -34,3 +34,7 @@ flutter:
     - family: spookyhouse
       fonts:
         - asset: assets/fonts/SPOOKYHOUSE_.ttf
+
+    - family: felipa
+        fonts:
+            - asset: assets/fonts/FELIPA_.otf
