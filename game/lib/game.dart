@@ -18,6 +18,7 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
   late final Darkness darkness;
   final StageData stage;
   late final Artboard minionArtBoard;
+  late final Artboard pandaArtBoard;
 
   GhostGame(this.stage);
 
@@ -26,6 +27,8 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
     await super.onLoad();
 
     minionArtBoard = await loadArtboard(RiveFile.asset('assets/minion.riv'));
+    pandaArtBoard = await loadArtboard(RiveFile.asset('assets/panda.riv'));
+
     camera.viewport = FixedResolutionViewport(Vector2(1600, 1690));
 
     add(
@@ -38,7 +41,7 @@ class GhostGame extends FlameGame with KeyboardEvents, HasCollidables {
     add(darkness = Darkness());
 
     for (var type in stage.enemies) {
-      add(Enemy(type));
+      add(RiveEnemy(enemies[type]!.loadArtboard(this), type));
     }
 
     add(ghost = Ghost()..position = size / 2);

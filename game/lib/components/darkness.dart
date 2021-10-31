@@ -7,7 +7,7 @@ import '../game.dart';
 
 class Darkness extends PositionComponent with HasGameRef<GhostGame> {
   late Paint paint;
-  double _progress = 0;
+  double progress = 0;
 
   Darkness() : super(priority: 2);
 
@@ -21,9 +21,9 @@ class Darkness extends PositionComponent with HasGameRef<GhostGame> {
   }
 
   void increase(double ammount) {
-    _progress += ammount;
+    progress += ammount;
 
-    size.y = _progress * gameRef.size.y;
+    size.y = progress * gameRef.size.y;
 
     final rect = size.toRect();
 
@@ -37,7 +37,7 @@ class Darkness extends PositionComponent with HasGameRef<GhostGame> {
         ],
       );
 
-    if (_progress >= 1) {
+    if (progress >= 1) {
       gameRef.stageClear();
     }
   }

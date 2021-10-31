@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:flame_rive/flame_rive.dart';
+import 'package:rive/rive.dart';
 
 import '../game.dart';
 import '../utils/util.dart';
@@ -9,14 +11,14 @@ import 'bubble.dart';
 class EnemyData {
   final Vector2 size;
   final double speed;
-  final String sprite;
   final double fireInterval;
+  final Artboard Function(GhostGame) loadArtboard;
 
   EnemyData({
     required this.size,
     required this.speed,
-    required this.sprite,
     required this.fireInterval,
+    required this.loadArtboard,
   });
 }
 
@@ -28,13 +30,13 @@ final enemies = {
   EnemyType.panda: EnemyData(
     size: Vector2(200, 220),
     speed: 50,
-    sprite: 'panda.png',
     fireInterval: 4,
+    loadArtboard: (game) => game.pandaArtBoard,
   ),
 };
 
-class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
-  Enemy(this.type) : super(priority: 2);
+class RiveEnemy extends RiveComponent with HasGameRef<GhostGame> {
+  RiveEnemy(Artboard artboard, this.type) : super(artboard: artboard, priority: 2);
 
   final random = Random();
 
@@ -45,6 +47,8 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
   late EnemyData data;
   late double target;
 
+  late final SimpleAnimation desperate;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -52,8 +56,6 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
     data = enemies[type]!;
 
     size = data.size;
-
-    sprite = await gameRef.loadSprite(data.sprite);
 
     final area = gameRef.size.x - size.x;
     position.x = area * random.nextDouble();
@@ -63,6 +65,14 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
       ..start();
 
     _chooseTarget();
+
+
+    // animation
+    final walk = SimpleAnimation('Walk');
+    artboard.addController(walk);
+
+    desperate = SimpleAnimation('Desperate', autoplay: false);
+    artboard.addController(desperate);
   }
 
   void _fire() {
@@ -88,6 +98,10 @@ class Enemy extends SpriteComponent with HasGameRef<GhostGame> {
 
     if ((position.x - target).abs() <= 5) {
       _chooseTarget();
+    }
+
+    if(gameRef.darkness.progress > 0.65) {
+      desperate.isActive = true;
     }
   }
 }
